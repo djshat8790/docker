@@ -3,7 +3,7 @@
     {
       "request": {
         "method": "GET",
-        "url": "/__admin/health"
+        "url": "/__admin/"
       },
       "response": {
         "status": 200,

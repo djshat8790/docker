@@ -23,12 +23,12 @@ public class PaymentApiClient {
     }
 
     public Response getHealthCheck(){
-        return given().spec(spec).when().get("/__admin/health");
+        return given().spec(spec).when().get("/__admin/");
 
     }
 
     public Response getCheck(){
-        return given().spec(spec).when().get("/admin/health");
+        return given().spec(spec).when().get("/admin/");
 
     }
 }
