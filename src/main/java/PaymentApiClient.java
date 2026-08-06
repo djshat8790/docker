@@ -26,4 +26,9 @@ public class PaymentApiClient {
         return given().spec(spec).when().get("/__admin/health");
 
     }
+
+    public Response getCheck(){
+        return given().spec(spec).when().get("/admin/health");
+
+    }
 }

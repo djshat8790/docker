@@ -16,7 +16,7 @@ RUN mvn test-compile -B
 # ========================================================
 # STAGE 2: Minimal Runtime Execution Container
 # ========================================================
-FROM eclipse-temurin:17-jre
+FROM maven:3.9.5-eclipse-temurin-17
 
 # Security Best Practice: Run as non-root user
 RUN groupadd -r qa && useradd -r -g qa qa

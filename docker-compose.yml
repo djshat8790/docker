@@ -8,10 +8,11 @@ services:
     volumes:
       - ./wiremock/mappings:/home/wiremock/mappings
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/__admin/health"]
+      test: ["CMD-SHELL", "bash -c 'cat < /dev/null > /dev/tcp/127.0.0.1/8080' || exit 1"]
       interval: 3s
-      timeout: 3s
+      timeout: 5s
       retries: 5
+      start_period: 5s
 
   # Quality Platform Test Runner
   test-runner:
