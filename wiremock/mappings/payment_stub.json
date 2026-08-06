@@ -1,0 +1,36 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/__admin/health"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": { "status": "UP" }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/api/v1/payments",
+        "headers": {
+          "Content-Type": {
+            "contains": "application/json"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "transactionId": "tx_n26_8892301",
+          "status": "SUCCESS",
+          "currency": "EUR"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+name: N26 Quality Platform CI Gate
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality-gate:
+    name: Execute Test Framework & Docker Gate
+    runs-on: ubuntu-latest
+
+    strategy:
+        matrix:
+          java-version: [ '17' ]
+
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Validate Maven Compilation & Code Quality
+        run: mvn test-compile -B
+
+      - name: Launch Dockerized Test Environment
+        run: |
+            docker compose up --build --exit-code-from test-runner
+          
+      - name: Archive Test Execution Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+            name: surefire-test-reports
+            path: target/surefire-reports/
+            retention-days: 14
